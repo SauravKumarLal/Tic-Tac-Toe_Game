@@ -3,36 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Player Names</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css">
-    
+    <link rel="stylesheet" href="style1.css">
+
 </head>
 <body>
-    <div class="wrapper">
-        <p class="game-info">Current Chance - X</p>
 
-        <div class="tic-tac-toe">
-            <div class="box box1"></div>
-            <div class="box box2"></div>
-            <div class="box box3"></div>
-            <div class="box box4"></div>
-            <div class="box box5"></div>
-            <div class="box box6"></div>
-            <div class="box box7"></div>
-            <div class="box box8"></div>
-            <div class="box box9"></div>
-        </div>
+<div class="wrapper">
+    <h1>Enter Player Names</h1>
+    <form class="nameForm">
+        <label for="player1">Player 1:</label>
+        <input type="text" id="player1" required>
+        <br>
+        <label for="player2">Player 2:</label>
+        <input type="text" id="player2" required>
+        <br><br>
+        <input type="button" class="btn" value="Start Game" onclick="startGame()">
+    </form>
+</div>
 
-        <button class="btn">New Game</button>
-    </div>
+<script>
+    function startGame() {
+        var player1Name = document.getElementById('player1').value;
+        var player2Name = document.getElementById('player2').value;
 
-    <script src="index.js"></script>
+        if (player1Name.trim() === '' || player2Name.trim() === '') {
+            alert('Please enter names for both players.');
+        } else {
+            // Redirect to the second HTML page with player names as query parameters
+            window.location.href = 'secondPage.html?player1=' + encodeURIComponent(player1Name) + '&player2=' + encodeURIComponent(player2Name);
+        }
+    }
+</script>
+
 </body>
 </html>
-
-
