@@ -24,6 +24,9 @@ function initGame(){
     boxes.forEach((box, index) =>{
         box.innerText = "";
         boxes[index].style.pointerEvents = "all";
+        //we need to remove green color too (initialize box with css properties again)
+        box.classList = `box box${index+1}`;
+
     });
     newGameBtn.classList.remove("active");
     gameInfo.innerText = `Current Player - ${currentPlayer}`; 
@@ -59,10 +62,10 @@ function checkGameOver(){
                 winner = "O";
             }
             //disable pointer event as we've the winner -->continue from here
+            boxes.forEach((box) => {
+                box.style.pointerEvents = "none";
 
-
-
-            
+            })
 
             //now we know who is winner -> mark them green
             boxes[position[0]].classList.add("win");
@@ -77,6 +80,22 @@ function checkGameOver(){
         newGameBtn.classList.add("active");
         return;
     }
+
+    //when there's no winner
+    let fillCount = 0;
+    gameGrid.forEach((box) => {
+        if(box != "")
+            fillCount++;
+    });
+
+    //game ties when board is filled
+    if(fillCount === 9){
+        gameInfo.innerText = "LOL! Game Tied!!";
+        newGameBtn.classList.add("active");
+        return;
+    }
+
+
 }
 
 function handleClick(index){
